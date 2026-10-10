@@ -1,4 +1,4 @@
-/* demo.js — six months of realistic synthetic bank transactions for the sample dataset. */
+/* Six months of realistic synthetic bank transactions for the sample dataset. */
 function sampleTransactions() {
   var r = Kit.rng(7), out = [], id = 0;
   var add = function (date, desc, amount) { out.push({ id: 's' + id++, date: date, desc: desc, amount: +amount.toFixed(2) }); };

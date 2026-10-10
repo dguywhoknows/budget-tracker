@@ -1,4 +1,4 @@
-/* core.js — parsing, categorization, recurring/anomaly detection, budgets, goals and forecasts (pure, unit-tested). */
+/* Parsing, categorization, recurring/anomaly detection, budgets, goals and forecasts (pure, unit-tested). */
 
 var CATS = {
   Housing: '#5b5bd6', Groceries: '#1f9d63', Dining: '#e2703a', Transport: '#2f7de1', Shopping: '#d6457a', Subscriptions: '#7c5cd6',

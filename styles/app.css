@@ -1,4 +1,4 @@
-:root { --accent: #0f9b6c; }
+:root { --accent: #1f7a55; }
 .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; margin-top: 8px; color: var(--muted); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
 .donut-row { display: flex; gap: 18px; align-items: flex-start; margin-top: 10px; }

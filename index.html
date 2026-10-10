@@ -3,81 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Budget Brain: Find out where your money actually goes</title>
-<meta name="description" content="Drop in your bank CSV. Spending is categorized, subscriptions and odd charges are flagged, and an AI coach reads the totals.">
+<title>Budget Brain: See where your money goes, starting from a bank CSV</title>
+<meta name="description" content="Transactions are sorted by rules you can edit, subscriptions and unusual charges are flagged, and budgets and savings goals are tracked month by month. Only category totals are ever sent to the model.">
 <meta property="og:title" content="Budget Brain">
-<meta property="og:description" content="Drop in your bank CSV. Spending is categorized, subscriptions and odd charges are flagged, and an AI coach reads the totals.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f9b6c'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='13' fill='white'%3EBB%3C/text%3E%3C/svg%3E">
+<meta property="og:description" content="Transactions are sorted by rules you can edit, subscriptions and unusual charges are flagged, and budgets and savings goals are tracked month by month. Only category totals are ever sent to the model.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f7a55'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='19' fill='white'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style id="type">:root { --font-head: 'Public Sans', system-ui, sans-serif; --font-body: 'Public Sans', system-ui, sans-serif; }</style>
 <link rel="stylesheet" href="styles/base.css">
 <link rel="stylesheet" href="styles/landing.css">
-<style>:root { --accent: #0f9b6c; }</style>
+<style>:root { --accent: #1f7a55; }</style>
 </head>
 <body class="landing">
-<header class="l-nav">
-  <a class="l-brand" href="#top"><span class="logo">BB</span><b>Budget Brain</b></a>
-  <nav aria-label="Sections"><a href="#demo">Demo</a><a href="#ask">Ask it</a><a href="#features">Features</a><a href="#faq">FAQ</a></nav>
-  <div class="l-nav-cta"><a class="btn ghost" href="login.html">Log in</a><a class="btn primary" href="login.html">Get started free</a></div>
-</header>
+<header class="l-nav"><div class="l-wrap l-nav-in">
+  <a class="l-brand" href="#top">Budget Brain</a>
+  <nav aria-label="Sections"><a href="#demo">Try it</a><a href="#ask">Commands</a><a href="#features">Features</a><a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">Source</a></nav>
+  <div class="l-nav-cta"><a class="btn ghost" href="login.html">Log in</a><a class="btn primary" href="login.html">Sign up free</a></div>
+</div></header>
 
 <main id="top">
-  <section class="l-hero">
-    <p class="l-kicker">Free · runs in your browser · AI built in</p>
-    <h1>Find out where your money actually goes.</h1>
-    <p class="l-sub">Drop in your bank CSV. Spending is categorized, subscriptions and odd charges are flagged, and an AI coach reads the totals.</p>
-    <div class="l-actions"><a class="btn primary big" href="login.html">Get started free</a><a class="btn big" href="#demo">See it working</a></div>
+  <section class="l-wrap l-hero">
+    <h1>See where your money goes, starting from a bank CSV.</h1>
+    <p class="l-sub">Transactions are sorted by rules you can edit, subscriptions and unusual charges are flagged, and budgets and savings goals are tracked month by month. Only category totals are ever sent to the model.</p>
+    <div class="l-actions"><a class="btn primary big" href="login.html">Sign up free</a><a class="l-link" href="#demo">Or try it on this page</a></div>
+    <p class="l-meta">Version 2.1.0 · MIT license · <a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">github.com/dguywhoknows/budget-tracker</a></p>
   </section>
 
-  <section class="l-demo reveal" id="demo">
-    <div class="l-window"><div class="l-window-bar"><i></i><i></i><i></i><span>Budget Brain</span></div>
-      <iframe src="app.html?embed=1" title="Budget Brain live demo" loading="lazy"></iframe></div>
-    <p class="l-caption">This is the real app running below, not a recording. Try it.</p>
+  <section class="l-wrap l-demo" id="demo">
+    <div class="l-frame"><iframe src="app.html?embed=1" title="Budget Brain" loading="lazy"></iframe></div>
+    <p class="l-caption">The app itself, running inside this page. Anything you do here is saved in your browser.</p>
   </section>
 
-  <section class="l-section reveal" id="ask">
-    <div class="l-head"><p class="l-kicker">Just say what you want</p><h2>Tell it in plain words. It uses its own tools to do it.</h2>
-      <p>Open the AI box in the app, type a request, and the AI drives the app's real features for you: it sets things up, edits, runs and reports back. Standing instructions let you shape every AI feature to how you like to work.</p></div>
-    <div class="l-prompts"><div class="l-prompt"><div class="say">Set my dining budget to 300 and groceries to 450</div><div class="does">Updates both monthly budgets.</div></div><div class="l-prompt"><div class="say">Anything containing UBER is transport from now on</div><div class="does">Adds a categorization rule and reapplies it.</div></div><div class="l-prompt"><div class="say">What did I spend the most on last month?</div><div class="does">Looks up the month&#x27;s category totals and answers.</div></div></div>
+  <section class="l-wrap l-section" id="ask">
+    <h2>Ask it to do things</h2>
+    <p class="l-lead">Press Ctrl+K in the app (Cmd+K on a Mac) and describe what you want. The model chooses from Budget Brain's own functions, runs them in order and tells you what changed. Some examples:</p>
+    <table class="l-cmds"><tr><td class="say">Set my dining budget to 300 and groceries to 450</td><td>Updates both monthly budgets.</td></tr><tr><td class="say">Anything containing UBER is transport from now on</td><td>Adds a categorization rule and reapplies it.</td></tr><tr><td class="say">What did I spend the most on last month?</td><td>Looks up the month&#x27;s category totals and answers.</td></tr></table>
+    <p class="l-small">Instructions you save in the same box, such as "keep it short" or "I'm a beginner", are added to every AI request the app makes.</p>
   </section>
 
-  <section class="l-section reveal" id="features">
-    <div class="l-head"><p class="l-kicker">What it does</p><h2>Everything in one place</h2></div>
-    <div class="l-grid"><div class="l-card"><h3>Bank-agnostic CSV import</h3><p>Header detection, date-format inference, debit/credit merging, sign normalization</p></div><div class="l-card"><h3>Merchant normalization</h3><p>Merchant normalization + regex rules + per-merchant overrides that persist</p></div><div class="l-card"><h3>AI batch categorization of unknown merchants</h3><p>AI batch categorization of unknown merchants</p></div><div class="l-card"><h3>Recurring detection</h3><p>Interval analysis (weekly/biweekly/monthly/yearly), amount stability, price-change alerts</p></div><div class="l-card"><h3>Anomaly detection</h3><p>Median/MAD robust z-scores, duplicate charges, large first-time merchants</p></div><div class="l-card"><h3>Stacked monthly bars</h3><p>Stacked monthly bars, category donut, editable budgets with progress bars</p></div><div class="l-card"><h3>Privacy-first AI coach that receives</h3><p>Privacy-first AI coach that receives only aggregates</p></div><div class="l-card"><h3>Transactions page</h3><p>Search and filter by month, category and categorization source; per-transaction notes; exclude from totals; manual entries; CSV export</p></div><div class="l-card"><h3>Category changes can apply to</h3><p>Category changes can apply to one transaction or become a merchant-wide rule</p></div></div>
+  <section class="l-wrap l-section" id="features">
+    <h2>Features</h2>
+    <dl class="l-feats"><div><dt>Bank-agnostic CSV import</dt><dd>Header detection, date-format inference, debit/credit merging, sign normalization.</dd></div><div><dt>Merchant normalization</dt><dd>Regex rules + per-merchant overrides that persist.</dd></div><div><dt>AI batch categorization of unknown merchants</dt></div><div><dt>Recurring detection</dt><dd>Interval analysis (weekly/biweekly/monthly/yearly), amount stability, price-change alerts.</dd></div><div><dt>Anomaly detection</dt><dd>Median/MAD robust z-scores, duplicate charges, large first-time merchants.</dd></div><div><dt>Stacked monthly bars</dt><dd>Category donut, editable budgets with progress bars.</dd></div><div><dt>Privacy-first AI coach that receives</dt><dd>Only aggregates.</dd></div><div><dt>Transactions page</dt><dd>Search and filter by month, category and categorization source; per-transaction notes; exclude from totals; manual entries; CSV export.</dd></div><div><dt>Category changes can apply to</dt><dd>One transaction or become a merchant-wide rule.</dd></div><div><dt>Budgets page</dt><dd>Per-category monthly budgets with optional rollover of unspent amounts and a 6-month history sparkline per category.</dd></div></dl>
   </section>
 
-  <section class="l-section reveal">
-    <div class="l-head"><p class="l-kicker">How it works</p><h2>Real engines where it counts, AI where it helps</h2></div>
-    <div class="l-steps">
-      <div><span>1</span><h3>Create a free account</h3><p>One account works across every app on this site.</p></div>
-      <div><span>2</span><h3>Ask in your own words</h3><p>Type or click. The AI handles jSON-mode merchant → category classification for anything the rules miss; budget coach that turns aggregated stats into insights and actions (budgeting only, no investment advice).</p></div>
-      <div><span>3</span><h3>Keep what you make</h3><p>Your work is saved in your browser and can be exported any time.</p></div>
-    </div>
-    <p class="l-note">Computed locally, with no AI involved: parsing, normalization, rules, recurring/anomaly detection, charts, budgets.</p>
+  <section class="l-wrap l-section l-split">
+    <div><h2>Runs in your browser</h2><p>Parsing, normalization, rules, recurring/anomaly detection, charts, budgets. None of this needs a network connection or a model.</p></div>
+    <div><h2>Uses a language model for</h2><p>JSON-mode merchant → category classification for anything the rules miss. Budget coach that turns aggregated stats into insights and actions (budgeting only, no investment advice).</p></div>
   </section>
 
-  <section class="l-section reveal" id="faq">
-    <div class="l-head"><p class="l-kicker">Questions</p><h2>Good to know</h2></div>
-    <div class="l-faq">
-      <details><summary>Is it free?</summary><p>Yes. Every feature is free. Each account gets a daily allowance of AI requests.</p></details>
-      <details><summary>Where is my data stored?</summary><p>What you create stays in this browser on this device. Your account is only used to sign you in and to use the built-in AI. You can export a backup or delete everything from Settings.</p></details>
-      <details><summary>Do I need an API key?</summary><p>No. Signed-in users get the built-in AI with nothing to set up. You can also connect your own Groq or OpenRouter key in Settings if you prefer.</p></details>
-      <details><summary>What can I type into the AI box?</summary><p>Anything you would ask a helpful colleague who knows the app, such as: "Set my dining budget to 300 and groceries to 450". It plans the steps, runs the app's own functions and tells you what it did. The Instructions tab saves preferences every AI feature follows.</p></details>
-      <details><summary>Can I see the code?</summary><p>Yes. It is open source under the MIT license on <a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">GitHub</a>, with a <a href="tests/">public test suite</a>.</p></details>
-    </div>
-  </section>
-
-  <section class="l-final reveal">
-    <h2>Find out where your money actually goes.</h2>
-    <a class="btn primary big" href="login.html">Get started free</a>
+  <section class="l-wrap l-section" id="notes">
+    <h2>Notes</h2>
+    <dl class="l-notes">
+      <dt>Cost</dt><dd>Free. Each account has a daily allowance of AI requests.</dd>
+      <dt>Your data</dt><dd>What you make stays in this browser on this device. Your account is only used for signing in and for the built-in AI. You can export a backup or clear everything from Settings.</dd>
+      <dt>AI access</dt><dd>Signed-in users get the built-in AI with nothing to set up. You can also use your own Groq or OpenRouter key under Settings.</dd>
+      <dt>Source</dt><dd>The code and tests are on <a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">GitHub</a> under the MIT license. The tests also run <a href="tests/">in your browser</a>.</dd>
+    </dl>
   </section>
 </main>
 
-<footer class="l-foot"><span>Budget Brain</span><span><a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">Source</a> · <a href="tests/">Tests</a> · MIT license</span></footer>
-<script>
-document.querySelectorAll('.reveal').forEach((el) => el.classList.add('pre'));
-const io = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.remove('pre'); io.unobserve(x.target); } }), { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-</script>
+<footer class="l-foot"><div class="l-wrap l-foot-in"><span>Budget Brain, by <a href="https://github.com/dguywhoknows" rel="noopener">dguywhoknows</a></span><span><a href="https://github.com/dguywhoknows/budget-tracker" rel="noopener">Source</a> · <a href="tests/">Tests</a> · <a href="login.html">Sign up free</a></span></div></footer>
 </body>
 </html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-gate="app">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget Brain</title>
+<meta name="description" content="Drop in a bank CSV: auto-categorize spending, find subscriptions and anomalies, set budgets and goals, and get AI budgeting insights. Private, in-browser.">
+<meta name="app-repo" content="https://github.com/dguywhoknows/budget-tracker">
+<meta name="app-version" content="2.1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f9b6c'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial%2CHelvetica%2Csans-serif' font-weight='700' font-size='13' fill='white'%3EBB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/app.css">
+<script src="src/lib/config.js"></script>
+<script src="src/lib/auth.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a class="logo-link" href="index.html" aria-label="Home page"><span class="logo" aria-hidden="true">BB</span></a><div><h1>Budget Brain</h1><p>Your bank CSV, decoded privately in your browser.</p></div></div>
+  <nav class="topnav" data-nav aria-label="Pages"></nav>
+  <div class="top-actions"><select id="month" style="width:auto" aria-label="Month"></select><span data-ai-badge></span></div>
+</header>
+
+<div class="page active" data-page="dashboard" data-title="Dashboard">
+<main class="stack">
+  <div class="kpis" id="tiles"></div>
+  <div class="grid cols-2">
+    <div class="card"><h2>Monthly spending by category</h2><div id="stack"></div><div id="legend" class="legend"></div></div>
+    <div class="card"><div class="row between"><h2 style="margin:0">This month</h2><a href="#/budgets" class="small">Edit budgets →</a></div><div class="donut-row"><div id="donut"></div><div id="budgetMini" class="grow"></div></div></div>
+  </div>
+  <div class="grid cols-2">
+    <div class="card"><h2>Subscriptions &amp; recurring</h2><div id="subs"></div></div>
+    <div class="card"><h2>Anomalies</h2><div id="anoms"></div></div>
+  </div>
+  <div class="card">
+    <div class="row between"><h2 style="margin:0">AI budget coach</h2><button class="btn" id="coach">Analyze this month</button></div>
+    <p class="small muted" style="margin-top:6px">Only aggregated totals (category sums, subscriptions, anomalies, goals) are sent to the model, never the transaction list.</p>
+    <div id="coachOut" class="prose"></div>
+  </div>
+</main>
+</div>
+
+<div class="page" data-page="transactions" data-title="Transactions">
+<main class="stack">
+  <div class="card row">
+    <label class="btn primary" style="color:var(--accent-ink)">Import bank CSV<input type="file" id="csv" accept=".csv,text/csv" hidden></label>
+    <button class="btn" id="addTx">+ Add transaction</button>
+    <button class="btn ghost" id="aiCat">AI-categorize unknowns</button>
+    <button class="btn ghost" id="exportTx">Export CSV</button>
+    <span class="grow"></span>
+    <button class="btn ghost sm" id="sample">Reload sample data</button>
+  </div>
+  <div class="card row">
+    <input class="input grow" id="filter" placeholder="Search description, merchant, note…">
+    <select id="fMonth" style="width:auto"></select>
+    <select id="fCat" style="width:auto"></select>
+    <select id="fSrc" style="width:auto"><option value="">Any source</option><option value="unknown">Uncategorized</option><option value="rule">My rules</option><option value="you">Merchant overrides</option><option value="manual">Manual</option><option value="ai">AI</option><option value="built-in">Built-in</option></select>
+    <span class="small muted" id="txCount"></span>
+  </div>
+  <div class="card table-wrap" style="max-height:620px"><table id="txTable"></table></div>
+</main>
+</div>
+
+<div class="page" data-page="budgets" data-title="Budgets">
+<main class="stack">
+  <div class="page-head"><div><h2>Budgets</h2><p id="budgetSummary"></p></div>
+    <div class="row"><label class="chk"><input type="checkbox" id="rollover"> Roll over unspent amounts</label><button class="btn" id="suggest">Suggest from last 3 months</button></div></div>
+  <div class="card table-wrap"><table id="budgetTable"></table></div>
+</main>
+</div>
+
+<div class="page" data-page="goals" data-title="Goals">
+<main class="stack">
+  <div class="page-head"><div><h2>Savings goals</h2><p id="goalSummary"></p></div><button class="btn primary" id="addGoal">+ New goal</button></div>
+  <div class="grid cols-2" id="goalList"></div>
+</main>
+</div>
+
+<div class="page" data-page="rules" data-title="Rules">
+<main class="stack">
+  <div class="page-head"><div><h2>Categorization rules</h2><p>Your rules run first, in order. Then per-merchant choices, built-in rules and AI guesses.</p></div><button class="btn primary" id="addRule">+ New rule</button></div>
+  <div class="card table-wrap"><table id="ruleTable"></table></div>
+  <div class="card stack">
+    <h2 style="margin:0">Test a description</h2>
+    <div class="row"><input class="input grow" id="ruleTest" placeholder="e.g. SQ *BLUE DOOR CAFE #1234 TORONTO ON"><input class="input" id="ruleTestAmt" type="number" placeholder="amount" style="max-width:120px"></div>
+    <div id="ruleTestOut" class="small"></div>
+  </div>
+  <div class="card"><h2>Merchant overrides</h2><div id="overrideList"></div></div>
+</main>
+</div>
+
+<div class="page" data-page="reports" data-title="Reports">
+<main class="stack">
+  <div class="card"><h2>Cash flow</h2><div id="cashflow"></div></div>
+  <div class="grid cols-2">
+    <div class="card"><h2>Forecast: next 3 months</h2><div id="forecast"></div></div>
+    <div class="card"><h2>Category trends</h2><div class="table-wrap" id="trends"></div></div>
+  </div>
+</main>
+</div>
+
+<div class="page" data-page="settings" data-title="Settings"></div>
+<script src="src/lib/dom.js"></script>
+<script src="src/lib/ai.js"></script>
+<script src="src/lib/router.js"></script>
+<script src="src/lib/copilot.js"></script>
+<script src="src/core.js"></script>
+<script src="src/demo.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

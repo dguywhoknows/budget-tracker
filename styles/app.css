@@ -1,0 +1,21 @@
+:root { --accent: #0f9b6c; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; margin-top: 8px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.donut-row { display: flex; gap: 18px; align-items: flex-start; margin-top: 10px; }
+.budget { margin-bottom: 9px; font-size: 13px; }
+.budget .top { display: flex; justify-content: space-between; gap: 6px; margin-bottom: 3px; }
+.budget input { width: 70px; padding: 2px 6px; font-size: 12px; text-align: right; }
+.bar.over > span { background: var(--bad); }
+.list-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.list-row:last-child { border-bottom: 0; }
+.amt { font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 13px; }
+.amt.in { color: var(--good); }
+#txTable select { padding: 2px 4px; font-size: 12px; width: auto; }
+#txTable td { font-size: 13px; }
+@media (max-width: 820px) { .donut-row { flex-direction: column; align-items: center; } }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.chk { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; color: var(--text); font-size: 14px; }
+#txTable .note { padding: 3px 6px; font-size: 12px; min-width: 110px; }
+#txTable tr.excluded td { opacity: .45; text-decoration: line-through; }
+#budgetTable td { vertical-align: middle; }
+.goal h2 { font-size: 17px; }
